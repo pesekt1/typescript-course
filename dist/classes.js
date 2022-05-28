@@ -99,4 +99,31 @@ function printNames(people) {
     }
 }
 printNames([new Student(1, "Alex", "Smith"), new Teacher("John", "Smith")]);
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("rendering circle");
+    }
+}
+class GoogleCalendar {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() {
+        console.log("addEvent");
+    }
+    removeEvent() {
+        console.log("remove event");
+    }
+}
+let person = { name: "Bob" };
+let person2 = { name: "Bob" };
 //# sourceMappingURL=classes.js.map
