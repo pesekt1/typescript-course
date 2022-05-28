@@ -151,3 +151,60 @@ let teacher = new Teacher("John", "Smith");
 console.log(teacher.fullName);
 
 //polymorphism------------------------
+function printNames(people: Person[]) {
+  for (let person of people) {
+    console.log(person.fullName);
+  }
+}
+
+printNames([new Student(1, "Alex", "Smith"), new Teacher("John", "Smith")]);
+
+//abstract classes and methods --------------------------------
+abstract class Shape {
+  constructor(public color: string) {}
+  abstract render(): void;
+}
+
+class Circle extends Shape {
+  constructor(public radius: number, color: string) {
+    super(color);
+  }
+
+  override render(): void {
+    console.log("rendering circle");
+  }
+}
+
+//let shape = new Shape("red"); //error - cannot instanciate an abstract class
+
+//inheritance------------------------
+interface Calendar {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
+}
+
+class GoogleCalendar implements Calendar {
+  constructor(public name: string) {}
+
+  addEvent(): void {
+    console.log("addEvent");
+  }
+  removeEvent(): void {
+    console.log("remove event");
+  }
+}
+
+//types vs interfaces------------------------
+//interface:
+interface Human {
+  name: string;
+}
+let person: Human = { name: "Bob" };
+
+//type:
+type HumanType = { name: string };
+let person2: HumanType = { name: "Bob" };
+
+//interface can extend another interface.
+//interface can extend a class.
