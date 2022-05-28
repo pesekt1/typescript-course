@@ -49,16 +49,48 @@ seats.A1 = "Alex";
 seats["B2"] = "Bob";
 class Ride {
     start() {
-        Ride.activeRides++;
+        Ride._activeRides++;
     }
     stop() {
-        Ride.activeRides--;
+        Ride._activeRides--;
+    }
+    static get activeRides() {
+        return Ride._activeRides;
     }
 }
-Ride.activeRides = 0;
+Ride._activeRides = 0;
 let ride1 = new Ride();
 ride1.start();
 let ride2 = new Ride();
 ride2.start();
 console.log(Ride.activeRides);
+class Person {
+    constructor(firstname, lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+    get fullName() {
+        return this.firstname + " " + this.lastname;
+    }
+    walk() {
+        console.log("walking");
+    }
+}
+class Student extends Person {
+    constructor(studentId, firstname, lastname) {
+        super(firstname, lastname);
+        this.studentId = studentId;
+    }
+    takeTest() {
+        console.log("taking test");
+    }
+}
+let student = new Student(1, "Alex", "Smith");
+class Teacher extends Person {
+    get fullName() {
+        return "Professor" + super.fullName;
+    }
+}
+let teacher = new Teacher("John", "Smith");
+console.log(teacher.fullName);
 //# sourceMappingURL=classes.js.map
