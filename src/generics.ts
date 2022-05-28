@@ -53,17 +53,21 @@ console.log(productResult.data?.price);
 
 //generic constraints------------------------
 
-class Owner extends Person {}
+class Man {
+  constructor(public firstName: string, public lastName: string) {}
+}
+
+class Owner extends Man {}
 
 function echo<T extends string | number>(value: T) {
   return value;
 }
 
-function echo2<T extends Person>(value: T) {
+function echo2<T extends Man>(value: T) {
   return value;
 }
 
-echo2(new Person("Bob", "Smith"));
+echo2(new Man("Bob", "Smith"));
 echo2(new Owner("Bob", "Smith"));
 
 interface Attorney {
@@ -81,3 +85,62 @@ function echo4<T extends { name: string }>(value: T) {
 }
 
 //extending generic classes-------------------------
+interface Product {
+  name: string;
+  price: number;
+}
+
+class Store<T> {
+  protected _objects: T[] = [];
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+}
+
+//Pass the generic type parameter
+class CompressibleStore<T> extends Store<T> {
+  compress() {}
+}
+
+let store = new CompressibleStore<Product>();
+store.compress();
+
+//Restricting the generic type parameter
+class SearchableStore<T extends { name: string }> extends Store<T> {
+  search(name: string): T | undefined {
+    return this._objects.find((obj) => obj.name === name);
+  }
+}
+
+//Fix the generic type parameter:
+class ProductStore extends Store<Product> {
+  filterByCategory(category: string): Product[] {
+    console.log("filtering by category: " + category);
+    return [];
+  }
+}
+
+//the keyof operator-------------------------
+class StoreGeneric<T> {
+  protected _objects: T[] = [];
+
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+
+  search(property: keyof T, value: unknown): T | undefined {
+    return this._objects.find((obj) => obj[property] === value);
+  }
+}
+
+let newStore = new StoreGeneric<Product>();
+newStore.search("name", "Bread");
+newStore.search("price", 10);
+
+//newStore.search("category", "food"); //gives an error
+
+//type mapping-------------------------
+interface Product {
+  name: string;
+  price: number;
+}
