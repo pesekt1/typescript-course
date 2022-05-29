@@ -89,4 +89,5 @@ class StoreGeneric {
 let newStore = new StoreGeneric();
 newStore.search("name", "Bread");
 newStore.search("price", 10);
+let product = { name: "Product", price: 10 };
 //# sourceMappingURL=generics.js.map

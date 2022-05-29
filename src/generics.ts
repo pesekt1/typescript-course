@@ -144,3 +144,13 @@ interface Product {
   name: string;
   price: number;
 }
+
+type ReadOnly<T> = {
+  readonly [Property in keyof T]: T[Property]; //Index signature + keyof operator
+};
+
+let product: ReadOnly<Product> = { name: "Product", price: 10 };
+
+type Optional<T> = { [Property in keyof T]?: T[Property] };
+
+type Nullable<T> = { [Property in keyof T]: T[Property] | null };
