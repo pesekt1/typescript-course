@@ -7,4 +7,4 @@ class Square {
     }
 }
 exports.Square = Square;
-//# sourceMappingURL=shapes.js.map
+//# sourceMappingURL=Square.js.map
