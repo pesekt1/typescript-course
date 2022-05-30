@@ -1,6 +1,7 @@
 import { calculateTax } from "./tax";
 import { calculateTax as calculateTax2 } from "./tax2";
 import { calculateTax as calculateTax3 } from "./tax3";
+import * as _ from "lodash";
 
 //problem: now argument is type of any
 //undefined is used when no argument is provided
